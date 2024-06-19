@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  gpt-neo:
+    build: ./gpt-neo
+    ports:
+      - "5000:5000"
+    mem_limit: 2g

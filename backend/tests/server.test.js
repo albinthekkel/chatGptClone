@@ -9,10 +9,10 @@ describe("POST /chat", () => {
       .post("/chat")
       .send(testPayload)
       .expect("Content-Type", /json/)
-      .expect(201);
+      .expect(200);
 
-    expect(response.body).toMatchObject(newUser);
-    expect(response.body).toHaveProperty("id");
+    expect(typeof response.body.response).toBe("string");
+    expect(response.body.response).toBeTruthy();
   });
 
   it("should return 400 if input is missing", async () => {
@@ -23,7 +23,7 @@ describe("POST /chat", () => {
       .expect(400);
 
     expect(response.body).toEqual({
-      error: "Error communicating with GPT-Neo",
+      error: "Input is missing or empty",
     });
   });
 });
